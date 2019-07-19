@@ -37,9 +37,9 @@ ext {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('io.rest-assured:rest-assured:3.0.3')
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('io.rest-assured:rest-assured:3.0.3')
     
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'

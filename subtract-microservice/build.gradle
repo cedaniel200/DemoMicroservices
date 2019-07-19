@@ -3,6 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'jacoco'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -12,6 +13,10 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/jacoco")
+}
 
 configurations {
     developmentOnly
@@ -33,6 +38,8 @@ ext {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('io.rest-assured:rest-assured:3.0.3')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
