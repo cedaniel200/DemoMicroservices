@@ -41,7 +41,8 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('io.rest-assured:rest-assured:3.0.3')
     testImplementation('com.github.tomakehurst:wiremock:2.6.0')
-    testImplementation "com.github.tomakehurst:wiremock-jre8:2.23.2"
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.19.0'
+    testImplementation group: 'org.mockito', name: 'mockito-inline', version: '2.19.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
