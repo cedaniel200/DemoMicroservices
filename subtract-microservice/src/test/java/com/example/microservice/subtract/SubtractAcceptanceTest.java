@@ -18,7 +18,7 @@ public class SubtractAcceptanceTest {
     private int port;
 
     @Test
-    public void shouldReturnYesterdaysWeather() {
+    public void shouldSubtractIntegerNumbers() {
         when()
                 .get(String.format("http://localhost:%s/?numbers=1,2,3,5,-1", port))
                 .then()
