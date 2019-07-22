@@ -1,11 +1,12 @@
-package com.example.microservice.e2e.stepdefinitions;
+package com.example.microservices.e2e.stepdefinitions;
 
-import com.example.microservice.e2e.questions.LastResponseStatusCode;
-import com.example.microservice.e2e.questions.Result;
-import com.example.microservice.e2e.tasks.CalculateFibonacci;
+import com.example.microservices.e2e.questions.LastResponseStatusCode;
+import com.example.microservices.e2e.questions.Result;
+import com.example.microservices.e2e.tasks.CalculateFibonacci;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.rest.abiities.CallAnApi;
@@ -34,7 +35,7 @@ public class CalculateFibonacciStepDefinitions {
     public void cesarShouldSeeThatTheResultIs(int result) {
         OnStage.theActorInTheSpotlight().should(seeThat("last response status code is 200",
                 LastResponseStatusCode.is(200)));
-        OnStage.theActorInTheSpotlight().should(seeThat("the result of fibonacci",
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat("the result of fibonacci",
                 Result.fibonacci(), is(result)));
     }
 

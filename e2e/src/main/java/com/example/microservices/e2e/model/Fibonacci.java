@@ -1,4 +1,4 @@
-package com.example.microservice.e2e.model;
+package com.example.microservices.e2e.model;
 
 public class Fibonacci {
     private final int number;

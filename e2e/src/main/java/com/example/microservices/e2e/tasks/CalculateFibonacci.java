@@ -1,4 +1,4 @@
-package com.example.microservice.e2e.tasks;
+package com.example.microservices.e2e.tasks;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;

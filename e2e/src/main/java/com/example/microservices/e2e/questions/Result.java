@@ -1,6 +1,6 @@
-package com.example.microservice.e2e.questions;
+package com.example.microservices.e2e.questions;
 
-import com.example.microservice.e2e.model.Fibonacci;
+import com.example.microservices.e2e.model.Fibonacci;
 import net.serenitybdd.screenplay.Question;
 
 import java.util.HashMap;

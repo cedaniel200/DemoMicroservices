@@ -1,4 +1,4 @@
-package com.example.microservice.e2e.runners;
+package com.example.microservices.e2e.runners;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
