@@ -1,7 +1,7 @@
-package com.example.microservices.add.config;
+package com.cedaniel200.microservices.add.config;
 
-import com.example.microservices.add.domain.Adder;
-import com.example.microservices.add.domain.AdderDefault;
+import com.cedaniel200.microservices.add.domain.Adder;
+import com.cedaniel200.microservices.add.domain.AdderDefault;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

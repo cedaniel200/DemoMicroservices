@@ -1,4 +1,4 @@
-package com.example.microservice.subtract;
+package com.cedaniel200.microservices.add;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class SubtractApplication {
+public class AddApplication  {
     public static void main(String[] args) {
-        SpringApplication.run(SubtractApplication.class, args);
+        SpringApplication.run(AddApplication.class, args);
     }
 }
+
+
