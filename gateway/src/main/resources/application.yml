@@ -1,0 +1,28 @@
+server:
+  port: 8762
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: addMicroservice
+          uri: lb://ADD-MICROSERVICE
+          predicates:
+            - Path=/add/**
+
+        - id: subtractMicroservice
+          uri: lb://SUBTRACT-MICROSERVICE
+          predicates:
+            - Path=/subtract/**
+
+        - id: fibonacciMicroservice
+          uri: lb://FIBONACCI-MICROSERVICE
+          predicates:
+            - Path=/fibonacci/**

@@ -1,0 +1,12 @@
+random-number:
+  url: http://localhost:9000
+
+spring:
+  application:
+    name: fibonacci-microservice
+server:
+  port: 8400
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka

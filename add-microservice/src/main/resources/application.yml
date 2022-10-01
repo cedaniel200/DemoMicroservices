@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: add-microservice
+server:
+  port: 8200
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka
