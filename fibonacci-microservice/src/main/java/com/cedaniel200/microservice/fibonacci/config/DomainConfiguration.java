@@ -1,9 +1,9 @@
-package com.example.microservice.fibonacci.config;
+package com.cedaniel200.microservice.fibonacci.config;
 
-import com.example.microservice.fibonacci.domain.FibonacciCalculator;
-import com.example.microservice.fibonacci.domain.FibonacciCalculatorDefault;
-import com.example.microservice.fibonacci.util.Validator;
-import com.example.microservice.fibonacci.util.ValidatorDefault;
+import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculator;
+import com.cedaniel200.microservice.fibonacci.util.Validator;
+import com.cedaniel200.microservice.fibonacci.util.ValidatorDefault;
+import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculatorDefault;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;

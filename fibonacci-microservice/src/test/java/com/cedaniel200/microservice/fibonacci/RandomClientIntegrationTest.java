@@ -1,34 +1,36 @@
-package com.example.microservice.fibonacci;
+package com.cedaniel200.microservice.fibonacci;
 
-import com.example.microservice.fibonacci.domain.FibonacciCalculatorDefault;
-import com.example.microservice.fibonacci.model.Fibonacci;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculatorDefault;
+import com.cedaniel200.microservice.fibonacci.model.Fibonacci;
+import com.github.tomakehurst.wiremock.WireMockServer;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
-public class RandomClientIntegrationTest {
+class RandomClientIntegrationTest {
 
     @Autowired
     private FibonacciCalculatorDefault fibonacciCalculator;
+    WireMockServer wireMockServer;
 
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(9000);
+    @BeforeEach
+    public void setup () {
+        wireMockServer = new WireMockServer(9000);
+        wireMockServer.start();
+    }
 
     @Test
-    public void shouldCallRandomService() throws Exception {
-        wireMockRule.stubFor(get(urlPathEqualTo("/random"))
+    void shouldCallRandomService() throws Exception {
+        wireMockServer.stubFor(get(urlPathEqualTo("/random"))
                 .willReturn(aResponse()
                         .withBody("{\"value\":8}")
                         .withHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -38,5 +40,10 @@ public class RandomClientIntegrationTest {
         Fibonacci fibonacci = fibonacciCalculator.calculateFibonacciOfARandomNumber();
 
         assertThat(fibonacci.getResult(), is(expectedResponse.getResult()));
+    }
+
+    @AfterEach
+    void down(){
+        wireMockServer.stop();
     }
 }

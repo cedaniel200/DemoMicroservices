@@ -1,17 +1,17 @@
-package com.example.microservice.fibonacci.domain;
+package com.cedaniel200.microservice.fibonacci.domain;
 
-import com.example.microservice.fibonacci.model.Fibonacci;
-import com.example.microservice.fibonacci.model.ValueRandom;
-import com.example.microservice.fibonacci.service.RandomService;
-import com.example.microservice.fibonacci.util.Validator;
+import com.cedaniel200.microservice.fibonacci.model.Fibonacci;
+import com.cedaniel200.microservice.fibonacci.model.ValueRandom;
+import com.cedaniel200.microservice.fibonacci.service.RandomService;
+import com.cedaniel200.microservice.fibonacci.util.Validator;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class FibonacciCalculatorDefault implements FibonacciCalculator {
 
-    private RandomService service;
-    private Validator validator;
+    private final RandomService service;
+    private final Validator validator;
 
     public FibonacciCalculatorDefault(Retrofit retrofit, Validator validator) {
         this.service = retrofit.create(RandomService.class);

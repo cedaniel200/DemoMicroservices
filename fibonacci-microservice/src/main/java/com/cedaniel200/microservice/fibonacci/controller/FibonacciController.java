@@ -1,13 +1,11 @@
-package com.example.microservice.fibonacci.controller;
+package com.cedaniel200.microservice.fibonacci.controller;
 
-import com.example.microservice.fibonacci.domain.FibonacciCalculator;
-import com.example.microservice.fibonacci.model.Fibonacci;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculator;
+import com.cedaniel200.microservice.fibonacci.model.Fibonacci;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/fibonacci")
 public class FibonacciController {
 
     private FibonacciCalculator fibonacciCalculator;

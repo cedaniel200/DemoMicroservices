@@ -1,6 +1,6 @@
-package com.example.microservice.fibonacci.domain;
+package com.cedaniel200.microservice.fibonacci.domain;
 
-import com.example.microservice.fibonacci.model.Fibonacci;
+import com.cedaniel200.microservice.fibonacci.model.Fibonacci;
 
 public interface FibonacciCalculator {
     Fibonacci calculateFibonacciOfNumber(int number);

@@ -1,10 +1,10 @@
-package com.example.microservice.fibonacci.domain;
+package com.cedaniel200.microservice.fibonacci.domain;
 
-import com.example.microservice.fibonacci.model.Fibonacci;
-import com.example.microservice.fibonacci.model.ValueRandom;
-import com.example.microservice.fibonacci.service.RandomService;
-import com.example.microservice.fibonacci.util.ValidatorDefault;
-import org.junit.Test;
+import com.cedaniel200.microservice.fibonacci.model.Fibonacci;
+import com.cedaniel200.microservice.fibonacci.model.ValueRandom;
+import com.cedaniel200.microservice.fibonacci.service.RandomService;
+import com.cedaniel200.microservice.fibonacci.util.ValidatorDefault;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -15,11 +15,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 
-public class FibonacciCalculatorDefaultTest {
+class FibonacciCalculatorDefaultTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void shouldThrowAnIOException() throws IOException {
+    void shouldThrowAnIOException() throws IOException {
         Call<ValueRandom> call = Mockito.mock(Call.class);
         Mockito.when(call.execute()).thenThrow(new IOException());
         RandomService randomService = Mockito.mock(RandomService.class);

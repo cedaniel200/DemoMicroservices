@@ -1,6 +1,6 @@
-package com.example.microservice.fibonacci.service;
+package com.cedaniel200.microservice.fibonacci.service;
 
-import com.example.microservice.fibonacci.model.ValueRandom;
+import com.cedaniel200.microservice.fibonacci.model.ValueRandom;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

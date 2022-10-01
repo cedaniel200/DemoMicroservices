@@ -1,4 +1,4 @@
-package com.example.microservice.fibonacci.model;
+package com.cedaniel200.microservice.fibonacci.model;
 
 public class Fibonacci {
     private final int number;
