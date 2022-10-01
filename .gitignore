@@ -35,18 +35,12 @@ hs_err_pid*
 #gradle
 **/.gradle/
 /.gradle/
-/gradle/
 **/build/
 /build/
 **/out/
-gradlew.bat
-gradlew
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-gradle/wrapper/gradle-wrapper.properties
 
 #Serenity
 target/
