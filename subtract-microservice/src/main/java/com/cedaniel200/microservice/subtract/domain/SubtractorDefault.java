@@ -1,4 +1,4 @@
-package com.example.microservice.subtract.domain;
+package com.cedaniel200.microservice.subtract.domain;
 
 import java.util.Arrays;
 

@@ -1,26 +1,23 @@
-package com.example.microservice.subtract;
+package com.cedaniel200.microservice.subtract;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.core.Is.is;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class SubtractAcceptanceTest {
+class SubtractAcceptanceTest {
 
     @LocalServerPort
     private int port;
 
     @Test
-    public void shouldSubtractIntegerNumbers() {
+    void shouldSubtractIntegerNumbers() {
         when()
-                .get(String.format("http://localhost:%s/?numbers=1,2,3,5,-1", port))
+                .get(String.format("http://localhost:%s/subtract/?numbers=1,2,3,5,-1", port))
                 .then()
                 .statusCode(is(200))
                 .body(containsString("-8"));

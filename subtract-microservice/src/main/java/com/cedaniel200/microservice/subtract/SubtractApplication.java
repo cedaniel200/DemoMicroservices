@@ -1,4 +1,4 @@
-package com.example.microservice.fibonacci;
+package com.cedaniel200.microservice.subtract;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class FibonacciApplication {
+public class SubtractApplication {
     public static void main(String[] args) {
-        SpringApplication.run(FibonacciApplication.class, args);
+        SpringApplication.run(SubtractApplication.class, args);
     }
 }

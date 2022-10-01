@@ -1,41 +1,41 @@
-package com.example.microservice.subtract.domain;
+package com.cedaniel200.microservice.subtract.domain;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SubtractController {
+class SubtractControllerTest {
     private Subtractor subtractor;
 
-    @Before
-    public void setup() {
+    @BeforeEach
+    void setup() {
         subtractor = new SubtractorDefault();
     }
 
     @Test
-    public void shouldSubtractTwoPositiveNumber() {
+    void shouldSubtractTwoPositiveNumber() {
         int result = subtractor.subtract(2, 7);
 
         assertEquals(-5, result);
     }
 
     @Test
-    public void shouldSubtractTwoNegativeNumber() {
+    void shouldSubtractTwoNegativeNumber() {
         int result = subtractor.subtract(-2, -7);
 
         assertEquals(5, result);
     }
 
     @Test
-    public void shouldSubtractOneNegativeNumberWithOnePositiveNumber() {
+    void shouldSubtractOneNegativeNumberWithOnePositiveNumber() {
         int result = subtractor.subtract(2, -7);
 
         assertEquals(9, result);
     }
 
     @Test
-    public void shouldSubtractTwoZeros() {
+    void shouldSubtractTwoZeros() {
         int result = subtractor.subtract(0, 0);
 
         assertEquals(0, result);

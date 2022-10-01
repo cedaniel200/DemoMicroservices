@@ -1,7 +1,7 @@
-package com.example.microservice.subtract.config;
+package com.cedaniel200.microservice.subtract.config;
 
-import com.example.microservice.subtract.domain.Subtractor;
-import com.example.microservice.subtract.domain.SubtractorDefault;
+import com.cedaniel200.microservice.subtract.domain.Subtractor;
+import com.cedaniel200.microservice.subtract.domain.SubtractorDefault;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
