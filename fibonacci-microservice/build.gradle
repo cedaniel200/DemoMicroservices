@@ -2,20 +2,21 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'idea'
-    id 'org.springframework.boot' version '2.1.5.RELEASE'
     id 'jacoco'
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
-group 'com.example.microservices'
+group 'com.cedaniel200.microservices'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 jacoco {
-    toolVersion = "0.8.4"
-    reportsDir = file("$buildDir/jacoco")
+    toolVersion = "0.8.8"
 }
 
 configurations {
@@ -30,31 +31,48 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven{
+        url 'https://maven.aliyun.com/nexus/content/groups/public/'
+    }
 }
 
 ext {
-    set('springCloudVersion', "Greenwich.SR1")
+    set('springCloudVersion', "2021.0.4")
+
+    okhttpVersion = '4.10.0'
+    retrofitVersion = '2.9.0'
+    gsonVersion = '2.9.0'
+
+    restAssureVersion = '5.2.0'
+    junitVersion = '5.9.0'
+    wiremockVersion = '2.27.2'
+    mockitoVersion = '4.8.0'
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-    testImplementation('io.rest-assured:rest-assured:3.0.3')
-    testImplementation('com.github.tomakehurst:wiremock:2.6.0')
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.19.0'
-    testImplementation group: 'org.mockito', name: 'mockito-inline', version: '2.19.0'
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
 
-    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.2.0'
-    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.4.0'
-    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.4.0'
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "io.rest-assured:rest-assured:${restAssureVersion}"
+    testImplementation "io.rest-assured:xml-path:${restAssureVersion}"
+    testImplementation "com.github.tomakehurst:wiremock:${wiremockVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
 }
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
+}
+
+test {
+    useJUnitPlatform()
 }
