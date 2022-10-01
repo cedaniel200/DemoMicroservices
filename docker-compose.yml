@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+
+  add-service:
+    build:
+      context: ./add-microservice/
+    restart: always
+    ports:
+      - "8200:8200"
+    depends_on:
+      - eureka
+
+  subtract-service:
+    build:
+      context: ./subtract-microservice/
+    restart: always
+    ports:
+      - "8300:8300"
+    depends_on:
+      - eureka
+
+  fibonacci-service:
+    build:
+      context: ./fibonacci-microservice/
+    restart: always
+    ports:
+      - "8400:8400"
+    depends_on:
+      - eureka
+
+  gateway-server:
+    build:
+      context: ./gateway/
+    restart: always
+    ports:
+      - "8762:8762"
+    depends_on:
+      - eureka
+
+  eureka:
+    build:
+      context: ./eureka-server/
+    restart: always
+    ports:
+      - "8761:8761"
