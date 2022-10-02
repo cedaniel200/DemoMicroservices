@@ -1,6 +1,7 @@
-package com.cedaniel200.microservices.add.controller;
+package com.cedaniel200.microservices.add.infrastructure.controller;
 
 import com.cedaniel200.microservices.add.domain.Adder;
+import com.cedaniel200.microservices.add.infrastructure.vo.Sum;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,8 @@ public class AddController {
 
     @GetMapping("/")
     @ResponseBody
-    public int add(@RequestParam int... numbers) {
-        return adder.add(numbers);
+    public Sum add(@RequestParam int... numbers) {
+        int result = adder.add(numbers);
+        return new Sum(numbers, result);
     }
 }

@@ -1,4 +1,4 @@
-package com.cedaniel200.microservices.add.config;
+package com.cedaniel200.microservices.add.infrastructure.config;
 
 import com.cedaniel200.microservices.add.domain.Adder;
 import com.cedaniel200.microservices.add.domain.AdderDefault;
