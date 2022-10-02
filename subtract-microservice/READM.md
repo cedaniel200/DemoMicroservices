@@ -1,4 +1,4 @@
-# Add Microservice
+# Subtract Microservice
 _________________________
 
 Para ejecutar el proyecto usar el comando:
@@ -11,17 +11,17 @@ no olvide volver a dejarlo como estaba, ya que, de lo contrario no servira el **
 * Si **Eureka** no esta corriendo en la consola aparecera un error, pero el servicio seguira funcionando.
 ______________________
 
-URL http://localhost:8200
+URL http://localhost:8300
 
 ### Paths
-* [GET] **/add**
+* [GET] **/subtract**
 
     Parameters:
     numbers
 
     Ejemplo:
         
-        http://localhost:8200/add/?numbers=5,2
+        http://localhost:8300/subtract/?numbers=5,2
     
     Response
     
