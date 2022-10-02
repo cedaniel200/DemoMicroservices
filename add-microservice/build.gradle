@@ -51,6 +51,8 @@ dependencies {
     
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
 }
 
 dependencyManagement {

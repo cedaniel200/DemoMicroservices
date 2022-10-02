@@ -1,6 +1,11 @@
 spring:
   application:
     name: add-microservice
+springdoc:
+  api-docs:
+    path: /add-docs
+  swagger-ui:
+    path: /add.html
 server:
   port: 8200
 eureka:
