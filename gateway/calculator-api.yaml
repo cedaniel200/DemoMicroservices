@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Calculator
+  description: |-
+    Esta es un API de ejemplo construida a partir de microservicios, usando Eureka y cloud gateway.
+
+  contact:
+    email: cdanielmg200@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+
+servers:
+  - url: https://localhost:8762/
+
+tags:
+  - name: Add
+    description: Permite realizar una suma de N números
+  - name: Subtract
+    description: Permite realizar una resta de N números
+  - name: Fibonacci
+    description: Permite calcular fibonacci de 0 al 10
+
+paths:
+
+  /add:
+    get:
+      tags:
+        - Add
+      summary: Realiza una suma
+      description: Realiza una suma según los numeros suministrados
+      operationId: add
+      parameters:
+        - name: numbers
+          in: query
+          description: números a sumar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Suma existosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Add'  
+        '400':
+          description: solicitud incorrecta
+
+
+  /subtract:
+    get:
+      tags:
+        - Subtract
+      summary: Realiza una resta
+      description: Realiza una resta según los numeros suministrados
+      operationId: subtract
+      parameters:
+        - name: numbers
+          in: query
+          description: números a restar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Resta existosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subtract'  
+        '400':
+          description: solicitud incorrecta
+  
+  /fibonacci:
+    get:
+      tags:
+        - Fibonacci
+      summary: Realiza el cálculo fibonacci
+      description: Realiza el cálculo fibonacci según el número suministrados
+      operationId: fibonacci
+      parameters:
+        - name: number
+          in: query
+          description: numero al que se le calculará la secuencia fibonacci
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Cálculo fibonacci existoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fibonacci'  
+        '400':
+          description: solicitud incorrecta
+  
+  /fibonacci/random:
+    get:
+      tags:
+        - Fibonacci
+      summary: Realiza el cálculo fibonacci
+      description: Realiza el cálculo fibonacci según un número random entre 0 y 10
+      operationId: fibonacciRandom
+      responses:
+        '200':
+          description: Cálculo fibonacci existoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fibonacci'  
+        '400':
+          description: solicitud incorrecta        
+
+
+components:
+  schemas:
+  
+    Add:
+      type: object
+      properties:
+        numbers:
+          type: array
+          items:
+            type: integer
+        result:
+          type: integer
+          format: int64
+          example: 0
+      
+    Subtract:
+      type: object
+      properties:
+        numbers:
+          type: array
+          items:
+            type: integer
+        result:
+          type: integer
+          format: int64
+          example: 0
+          
+    Fibonacci:
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+          example: 0
+        result:
+          type: integer
+          format: int64
+          example: 0
