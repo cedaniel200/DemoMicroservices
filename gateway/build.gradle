@@ -23,14 +23,15 @@ repositories {
 
 ext {
     set('springCloudVersion', "2021.0.4")
+    junitVersion = '5.9.0'
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
