@@ -1,4 +1,4 @@
-package com.cedaniel200.microservice.subtract.config;
+package com.cedaniel200.microservice.subtract.infrastructure.config;
 
 import com.cedaniel200.microservice.subtract.domain.Subtractor;
 import com.cedaniel200.microservice.subtract.domain.SubtractorDefault;
