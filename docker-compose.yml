@@ -1,32 +1,12 @@
 version: "3.9"
 services:
 
-  add-service:
+  eureka:
     build:
-      context: ./add-microservice/
+      context: ./eureka-server/
     restart: always
     ports:
-      - "8200:8200"
-    depends_on:
-      - eureka
-
-  subtract-service:
-    build:
-      context: ./subtract-microservice/
-    restart: always
-    ports:
-      - "8300:8300"
-    depends_on:
-      - eureka
-
-  fibonacci-service:
-    build:
-      context: ./fibonacci-microservice/
-    restart: always
-    ports:
-      - "8400:8400"
-    depends_on:
-      - eureka
+      - "8761:8761"
 
   gateway-server:
     build:
@@ -36,10 +16,34 @@ services:
       - "8762:8762"
     depends_on:
       - eureka
+    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
 
-  eureka:
+  add-service:
     build:
-      context: ./eureka-server/
+      context: ./add-microservice/
     restart: always
     ports:
-      - "8761:8761"
+      - "8200:8200"
+    depends_on:
+      - eureka
+    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
+
+  subtract-service:
+    build:
+      context: ./subtract-microservice/
+    restart: always
+    ports:
+      - "8300:8300"
+    depends_on:
+      - eureka
+    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
+
+  fibonacci-service:
+    build:
+      context: ./fibonacci-microservice/
+    restart: always
+    ports:
+      - "8400:8400"
+    depends_on:
+      - eureka
+    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
