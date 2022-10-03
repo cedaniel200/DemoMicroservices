@@ -1,4 +1,4 @@
-package com.example.microservices.e2e.questions;
+package com.cedaniel200.microservices.e2e.questions;
 
 import net.serenitybdd.screenplay.Question;
 

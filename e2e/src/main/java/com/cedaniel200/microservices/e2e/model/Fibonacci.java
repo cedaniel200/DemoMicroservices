@@ -1,8 +1,11 @@
-package com.example.microservices.e2e.model;
+package com.cedaniel200.microservices.e2e.model;
 
 public class Fibonacci {
-    private final int number;
-    private final int result;
+    private int number;
+    private int result;
+
+    public Fibonacci() {
+    }
 
     public Fibonacci(int number, int result) {
         this.number = number;

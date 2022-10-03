@@ -1,4 +1,4 @@
-package com.example.microservices.e2e.tasks;
+package com.cedaniel200.microservices.e2e.tasks;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -8,9 +8,9 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class CalculateFibonacci implements Task {
 
-    private static final String RESOURSE_CALCULATE_FIBONACCI = "/fibonacci?number=%d";
+    private static final String RESOURSE_CALCULATE_FIBONACCI = "/fibonacci/?number=%d";
     private static final String RESOURSE_CALCULATE_FIBONACCI_RANDOM = "/fibonacci/random";
-    private String resource;
+    private final String resource;
 
     public CalculateFibonacci(String resource) {
         this.resource = resource;

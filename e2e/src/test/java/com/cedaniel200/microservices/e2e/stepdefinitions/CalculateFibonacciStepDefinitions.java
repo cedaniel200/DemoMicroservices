@@ -1,15 +1,15 @@
-package com.example.microservices.e2e.stepdefinitions;
+package com.cedaniel200.microservices.e2e.stepdefinitions;
 
-import com.example.microservices.e2e.questions.LastResponseStatusCode;
-import com.example.microservices.e2e.questions.Result;
-import com.example.microservices.e2e.tasks.CalculateFibonacci;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import com.cedaniel200.microservices.e2e.questions.LastResponseStatusCode;
+import com.cedaniel200.microservices.e2e.questions.Result;
+import com.cedaniel200.microservices.e2e.tasks.CalculateFibonacci;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.serenitybdd.screenplay.rest.abiities.CallAnApi;
+import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.core.Is.is;
@@ -21,7 +21,7 @@ public class CalculateFibonacciStepDefinitions {
     @Before
     public void prepareStage() {
         OnStage.setTheStage(new OnlineCast());
-        OnStage.theActorCalled(CESAR).whoCan(CallAnApi.at("http://localhost:8762/api/calculator"));
+        OnStage.theActorCalled(CESAR).whoCan(CallAnApi.at("http://localhost:8762"));
     }
 
     @When("^Cesar calculates the fibonacci of (\\d+)$")
@@ -35,7 +35,7 @@ public class CalculateFibonacciStepDefinitions {
     public void cesarShouldSeeThatTheResultIs(int result) {
         OnStage.theActorInTheSpotlight().should(seeThat("last response status code is 200",
                 LastResponseStatusCode.is(200)));
-        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat("the result of fibonacci",
+        OnStage.theActorInTheSpotlight().should(seeThat("the result of fibonacci",
                 Result.fibonacci(), is(result)));
     }
 
