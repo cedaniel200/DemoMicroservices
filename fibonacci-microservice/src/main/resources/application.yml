@@ -4,6 +4,11 @@ random-number:
 spring:
   application:
     name: fibonacci-microservice
+springdoc:
+  api-docs:
+    path: /fibonacci/subtract-docs
+  swagger-ui:
+    path: /fibonacci/doc/
 server:
   port: 8400
 eureka:
