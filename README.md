@@ -1,6 +1,6 @@
 # Demo Microservices - Calculator Api
 
-Un ejemplo basico de una arquitectura de microservicios con las pruebas que a esta se le pueden aplicar, las cuales incluye:
+Un ejemplo básico de una arquitectura de microservicios con las pruebas que a esta se le pueden aplicar, las cuales incluye:
 
 * Pruebas unitarias
 * Pruebas de Componentes
