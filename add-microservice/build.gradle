@@ -40,6 +40,7 @@ ext {
     set('springCloudVersion', "2021.0.4")
     restAssureVersion = '5.2.0'
     junitVersion = '5.9.0'
+    openapiUIVersion = '1.6.11'
 }
 
 dependencies {
@@ -48,11 +49,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "io.rest-assured:rest-assured:${restAssureVersion}"
     testImplementation "io.rest-assured:xml-path:${restAssureVersion}"
-    
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+    implementation "org.springdoc:springdoc-openapi-ui:${openapiUIVersion}"
 }
 
 dependencyManagement {
