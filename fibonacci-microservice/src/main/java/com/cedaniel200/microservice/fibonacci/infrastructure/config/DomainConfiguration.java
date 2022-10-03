@@ -1,9 +1,11 @@
-package com.cedaniel200.microservice.fibonacci.config;
+package com.cedaniel200.microservice.fibonacci.infrastructure.config;
 
 import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculator;
-import com.cedaniel200.microservice.fibonacci.util.Validator;
-import com.cedaniel200.microservice.fibonacci.util.ValidatorDefault;
 import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculatorDefault;
+import com.cedaniel200.microservice.fibonacci.domain.repository.FibonacciRepository;
+import com.cedaniel200.microservice.fibonacci.domain.util.Validator;
+import com.cedaniel200.microservice.fibonacci.domain.util.ValidatorDefault;
+import com.cedaniel200.microservice.fibonacci.infrastructure.repository.FibonacciDefaultRepository;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +33,12 @@ public class DomainConfiguration {
     }
 
     @Bean
-    public FibonacciCalculator providesFibonacciCalculatorDefaultInstance(Retrofit retrofit, Validator validator) {
-        return new FibonacciCalculatorDefault(retrofit, validator);
+    public FibonacciRepository providesFibonacciDefaultRepositoryInstance(Retrofit retrofit) {
+        return new FibonacciDefaultRepository(retrofit);
+    }
+
+    @Bean
+    public FibonacciCalculator providesFibonacciCalculatorDefaultInstance(FibonacciRepository fibonacciRepository, Validator validator) {
+        return new FibonacciCalculatorDefault(fibonacciRepository, validator);
     }
 }

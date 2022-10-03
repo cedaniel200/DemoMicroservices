@@ -1,4 +1,4 @@
-package com.cedaniel200.microservice.fibonacci.model;
+package com.cedaniel200.microservice.fibonacci.domain.model;
 
 public class ValueRandom {
     private final int value;

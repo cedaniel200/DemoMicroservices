@@ -1,4 +1,4 @@
-package com.cedaniel200.microservice.fibonacci.util;
+package com.cedaniel200.microservice.fibonacci.domain.util;
 
 public class ValidatorDefault implements Validator {
     @Override

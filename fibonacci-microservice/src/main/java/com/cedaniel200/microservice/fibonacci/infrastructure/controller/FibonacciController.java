@@ -1,7 +1,7 @@
-package com.cedaniel200.microservice.fibonacci.controller;
+package com.cedaniel200.microservice.fibonacci.infrastructure.controller;
 
 import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculator;
-import com.cedaniel200.microservice.fibonacci.model.Fibonacci;
+import com.cedaniel200.microservice.fibonacci.domain.model.Fibonacci;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

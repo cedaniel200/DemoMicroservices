@@ -1,9 +1,11 @@
 package com.cedaniel200.microservice.fibonacci.domain;
 
-import com.cedaniel200.microservice.fibonacci.model.Fibonacci;
-import com.cedaniel200.microservice.fibonacci.model.ValueRandom;
-import com.cedaniel200.microservice.fibonacci.service.RandomService;
-import com.cedaniel200.microservice.fibonacci.util.ValidatorDefault;
+import com.cedaniel200.microservice.fibonacci.domain.model.Fibonacci;
+import com.cedaniel200.microservice.fibonacci.domain.model.ValueRandom;
+import com.cedaniel200.microservice.fibonacci.domain.repository.FibonacciRepository;
+import com.cedaniel200.microservice.fibonacci.infrastructure.repository.FibonacciDefaultRepository;
+import com.cedaniel200.microservice.fibonacci.infrastructure.repository.service.RandomService;
+import com.cedaniel200.microservice.fibonacci.domain.util.ValidatorDefault;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import retrofit2.Call;
@@ -23,10 +25,11 @@ class FibonacciCalculatorDefaultTest {
         Call<ValueRandom> call = Mockito.mock(Call.class);
         Mockito.when(call.execute()).thenThrow(new IOException());
         RandomService randomService = Mockito.mock(RandomService.class);
-        Mockito.when(randomService.getRandomNumer(any(Integer.class))).thenReturn(call);
+        Mockito.when(randomService.getRandomNumber(any(Integer.class))).thenReturn(call);
         Retrofit retrofit = Mockito.mock(Retrofit.class);
         Mockito.when(retrofit.create(RandomService.class)).thenReturn(randomService);
-        FibonacciCalculator fibonacciCalculator = new FibonacciCalculatorDefault(retrofit, new ValidatorDefault());
+        FibonacciRepository repository = new FibonacciDefaultRepository(retrofit);
+        FibonacciCalculator fibonacciCalculator = new FibonacciCalculatorDefault(repository, new ValidatorDefault());
         Fibonacci expectedResponse = new Fibonacci(-1, -1);
 
         Fibonacci fibonacci = fibonacciCalculator.calculateFibonacciOfARandomNumber();
