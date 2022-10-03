@@ -26,6 +26,8 @@ Los microservicios y servers fueron construídos con las siguientes herramientas
 ## Requisitos
 
 * Tener instalado Docker
+* Si quiere que todos los endpoints de **Fibonacci** funcionen correctamente debe tener corriendo el servicio que puede descargar 
+en el repositorio https://github.com/cedaniel200/DemoService. Sin este **/fibonacci/random** devolvera siempre los valores de **-1** 
 
 ## Para correr todos los microservicios
 
@@ -33,6 +35,13 @@ Ejecutar el comando:
 
     docker compose up
 
-Para ver la documentación de la API [en construcción]
+URL http://localhost:8762
+
+Puede acceder a la documentación de cada microservicio en:
+
+* http://localhost:8762/add/doc/
+* http://localhost:8762/subtract/doc/
+* http://localhost:8762/fibonacci/doc/
 
 
+## Si tiene alguna pregunta, puede escribirme a cdanielmg200@gmail.com
