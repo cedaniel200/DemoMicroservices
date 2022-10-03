@@ -9,8 +9,11 @@ import static net.serenitybdd.rest.SerenityRest.lastResponse;
 
 public class Result {
 
+    private Result() {
+    }
+
     public static Question<Integer> fibonacci() {
-        return (actor) -> lastResponse().body().as(Fibonacci.class).getResult();
+        return actor -> lastResponse().body().as(Fibonacci.class).getResult();
     }
 
     public static Question<Boolean> fibonacciRandomIsCorrect() {
@@ -26,9 +29,10 @@ public class Result {
         possibleFibonacciResult.put(8, 21);
         possibleFibonacciResult.put(9, 34);
         possibleFibonacciResult.put(10, 55);
-        return (actor) -> {
+        return actor -> {
             Fibonacci fibonacci = lastResponse().body().as(Fibonacci.class);
-            return fibonacci.getResult() == possibleFibonacciResult.get(fibonacci.getNumber());
+            return fibonacci.getResult() != -1 &&
+                    fibonacci.getResult() == possibleFibonacciResult.get(fibonacci.getNumber());
         };
     }
 }
