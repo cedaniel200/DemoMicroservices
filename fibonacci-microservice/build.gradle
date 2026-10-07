@@ -3,20 +3,20 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'jacoco'
-    id 'org.springframework.boot' version '2.7.4'
-    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group 'com.cedaniel200.microservices'
 version '1.0-SNAPSHOT'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 jacoco {
-    toolVersion = "0.8.8"
+    toolVersion = "0.8.11"
 }
 
 configurations {
@@ -37,18 +37,17 @@ repositories {
 }
 
 ext {
-    set('springCloudVersion', "2021.0.4")
+    set('springCloudVersion', "2023.0.3")
 
-    okhttpVersion = '4.10.0'
-    retrofitVersion = '2.9.0'
-    gsonVersion = '2.9.0'
+    okhttpVersion = '4.12.0'
+    retrofitVersion = '2.11.0'
+    //gsonVersion = '2.11.0'
 
-    restAssureVersion = '5.2.0'
-    junitVersion = '5.9.0'
-    wiremockVersion = '2.27.2'
-    mockitoVersion = '4.8.0'
+    restAssureVersion = '5.5.0'
+    wiremockVersion = '3.9.1'
+    //mockitoVersion = '4.8.0'
 
-    openapiUIVersion = '1.6.11'
+    openapiUIVersion = '2.6.0'
 }
 
 dependencies {
@@ -57,18 +56,18 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
     implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
-    implementation "com.google.code.gson:gson:${gsonVersion}"
+    //implementation "com.google.code.gson:gson:${gsonVersion}"
 
-    implementation "org.springdoc:springdoc-openapi-ui:${openapiUIVersion}"
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiUIVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    //testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    //testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "io.rest-assured:rest-assured:${restAssureVersion}"
-    testImplementation "io.rest-assured:xml-path:${restAssureVersion}"
-    testImplementation "com.github.tomakehurst:wiremock:${wiremockVersion}"
-    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
-    testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
+    testImplementation "io.rest-assured:xml-path"
+    testImplementation "org.wiremock:wiremock-standalone:${wiremockVersion}"
+   // testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+   // testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
 }
 
 dependencyManagement {
