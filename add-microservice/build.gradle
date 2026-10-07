@@ -3,20 +3,20 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'jacoco'
-    id 'org.springframework.boot' version '2.7.4'
-    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group 'com.cedaniel200.microservices'
 version '1.0-SNAPSHOT'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 jacoco {
-    toolVersion = "0.8.8"
+    toolVersion = "0.8.11"
 }
 
 configurations {
@@ -37,23 +37,20 @@ repositories {
 }
 
 ext {
-    set('springCloudVersion', "2021.0.4")
-    restAssureVersion = '5.2.0'
-    junitVersion = '5.9.0'
-    openapiUIVersion = '1.6.11'
+    set('springCloudVersion', "2023.0.3")
+    restAssureVersion = '5.5.0'
+    openapiUIVersion = '2.6.0'
 }
 
 dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "io.rest-assured:rest-assured:${restAssureVersion}"
-    testImplementation "io.rest-assured:xml-path:${restAssureVersion}"
+    testImplementation "io.rest-assured:xml-path"
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-    implementation "org.springdoc:springdoc-openapi-ui:${openapiUIVersion}"
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiUIVersion}"
 }
 
 dependencyManagement {
