@@ -1,7 +1,5 @@
 package com.cedaniel200.microservice.fibonacci.infrastructure.config;
 
-import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculator;
-import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculatorDefault;
 import com.cedaniel200.microservice.fibonacci.domain.repository.FibonacciRepository;
 import com.cedaniel200.microservice.fibonacci.domain.util.Validator;
 import com.cedaniel200.microservice.fibonacci.domain.util.ValidatorDefault;
@@ -37,8 +35,5 @@ public class DomainConfiguration {
         return new FibonacciDefaultRepository(retrofit);
     }
 
-    @Bean
-    public FibonacciCalculator providesFibonacciCalculatorDefaultInstance(FibonacciRepository fibonacciRepository, Validator validator) {
-        return new FibonacciCalculatorDefault(fibonacciRepository, validator);
-    }
+
 }

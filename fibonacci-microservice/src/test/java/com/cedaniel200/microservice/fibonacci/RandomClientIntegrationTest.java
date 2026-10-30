@@ -1,6 +1,6 @@
 package com.cedaniel200.microservice.fibonacci;
 
-import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculatorDefault;
+import com.cedaniel200.microservice.fibonacci.application.FibonacciCalculatorDefault;
 import com.cedaniel200.microservice.fibonacci.domain.model.Fibonacci;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.AfterEach;

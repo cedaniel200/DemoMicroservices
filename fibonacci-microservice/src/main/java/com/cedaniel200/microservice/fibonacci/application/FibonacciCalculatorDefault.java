@@ -1,9 +1,12 @@
-package com.cedaniel200.microservice.fibonacci.domain;
+package com.cedaniel200.microservice.fibonacci.application;
 
+import com.cedaniel200.microservice.fibonacci.domain.FibonacciCalculator;
 import com.cedaniel200.microservice.fibonacci.domain.model.Fibonacci;
 import com.cedaniel200.microservice.fibonacci.domain.repository.FibonacciRepository;
 import com.cedaniel200.microservice.fibonacci.domain.util.Validator;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FibonacciCalculatorDefault implements FibonacciCalculator {
 
     private final FibonacciRepository fibonacciRepository;

@@ -55,6 +55,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiUIVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
