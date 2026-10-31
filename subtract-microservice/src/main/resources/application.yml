@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: subtract-microservice
+springdoc:
+  api-docs:
+    path: /subtract/subtract-docs
+  swagger-ui:
+    path: /subtract/doc/
+server:
+  port: 8300
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: add-microservice
+springdoc:
+  api-docs:
+    path: /add/add-docs
+  swagger-ui:
+    path: /add/doc/
+server:
+  port: 8200
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka

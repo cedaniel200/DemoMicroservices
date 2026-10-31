@@ -1,0 +1,35 @@
+random-number:
+  url: http://127.0.0.1:9000
+
+spring:
+  application:
+    name: fibonacci-microservice
+springdoc:
+  api-docs:
+    path: /fibonacci/fibonacci-docs
+  swagger-ui:
+    path: /fibonacci/doc/
+server:
+  port: 8400
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      randomService:
+        slidingWindowSize: 20
+        # Número mínimo de llamadas antes de empezar a calcular porcentajes
+        minimumNumberOfCalls: 10
+        # Configuración para fallos directos
+        failureRateThreshold: 50
+        # Configuración para llamadas lentas
+        slowCallDurationThreshold: 2000ms
+        slowCallRateThreshold: 50
+        # Tiempo que se queda abierto antes de intentar recuperarse
+        waitDurationInOpenState: 10s
+        # 3 llamadas de prueba para validar si el servicio revivió
+        permittedNumberOfCallsInHalfOpenState: 3

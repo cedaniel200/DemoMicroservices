@@ -1,0 +1,69 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.34")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+apply plugin: 'net.serenity-bdd.aggregator'
+
+group = 'com.example.microservices'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    serenityVersion = '5.4.1'
+
+    junitVersion = '4.13.2'
+    slf4jVersion = '2.0.1'
+    assertjVersion = '3.23.1'
+}
+
+dependencies {
+
+    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:$serenityVersion"
+
+    testImplementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.3"
+    testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    testImplementation "io.cucumber:cucumber-junit-platform-engine:8.0.4"
+    testImplementation "org.junit.platform:junit-platform-suite:1.11.4"
+    testImplementation "net.serenity-bdd:serenity-junit:$serenityVersion"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.withType(Test).configureEach {
+    // Solo si se pasa -Dbase.url; si no, el código usa BASE_URL o localhost:8762.
+    // Copiar todo System.properties arrastra java.home y rompe el JVM de tests.
+    def baseUrl = System.getProperty('base.url')
+    if (baseUrl != null) {
+        systemProperty 'base.url', baseUrl
+    }
+    maxParallelForks = 1
+}
+
+gradle.startParameter.continueOnFailure = true
