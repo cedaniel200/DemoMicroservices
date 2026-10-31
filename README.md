@@ -145,7 +145,7 @@ sin privilegios) y su propio wrapper de Gradle.
 
 Lo que viene, en orden:
 
-- [ ] Capa de aplicación y VOs en los servicios de suma y resta, con la validación en el caso de uso.
+- [ ] Completar la arquitectura hexagonal en los microservicios.
 - [ ] `health` y `readiness` (Actuator) y configuración por entorno en todos los servicios.
 - [ ] Despliegue en Kubernetes con probes y ConfigMaps.
 - [ ] Observabilidad: métricas y trazas.
