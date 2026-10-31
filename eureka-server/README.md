@@ -25,7 +25,7 @@ Solo este servicio, en local:
 
 | Dato | Valor |
 |---|---|
-| Puerto | `8761` |
+| Puerto | `8761` (`SERVER_PORT`) |
 | Panel | <http://localhost:8761> |
 | Registro propio | Desactivado (`registerWithEureka: false`, `fetchRegistry: false`) |
 

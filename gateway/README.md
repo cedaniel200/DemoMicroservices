@@ -36,13 +36,13 @@ docker compose up --build
 Solo este servicio, en local:
 
 ```bash
-./gradlew bootRun
+EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://localhost:8761/eureka ./gradlew bootRun
 ```
 
 | Dato | Valor |
 |---|---|
-| Puerto | `8762` |
-| Descubrimiento | `http://eureka:8761/eureka` |
+| Puerto | `8762` (`SERVER_PORT`) |
+| Descubrimiento | `http://eureka:8761/eureka` (`EUREKA_CLIENT_SERVICEURL_DEFAULTZONE`) |
 
 ## Ejemplos
 

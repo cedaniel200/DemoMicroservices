@@ -46,6 +46,17 @@ IPs ni puertos.
 | Integración | `RandomClientIntegrationTest` | El cliente HTTP contra WireMock |
 | E2E | `e2e/` (Serenity + Cucumber) | Flujo completo por el gateway |
 
+## Variables de entorno
+
+Los servicios se configuran con variables de entorno; los valores por defecto son los de Compose.
+
+| Variable | Servicios | Por defecto | Para qué |
+|---|---|---|---|
+| `EUREKA_CLIENT_SERVICEURL_DEFAULTZONE` | `gateway`, `add`, `subtract`, `fibonacci` | `http://eureka:8761/eureka` | Dónde registrar el servicio |
+| `RANDOM_NUMBER_URL` | `fibonacci` | `http://127.0.0.1:9000` (`host.docker.internal:9000` en Compose) | URL del servicio externo de números |
+| `SERVER_PORT` | todos | `8761`, `8762`, `8200`, `8300`, `8400` | Puerto de escucha, si se quiere cambiar |
+| `base.url` (o `BASE_URL`) | `e2e` | `http://localhost:8762` | Gateway contra el que corren las pruebas |
+
 ## Cómo ejecutarlo
 
 Requiere Docker. El stack completo se levanta con una sola orden:
@@ -69,6 +80,12 @@ Documentación de cada servicio:
 - <http://localhost:8762/subtract/doc/>
 - <http://localhost:8762/fibonacci/doc/>
 
+Para bajar el stack:
+
+```bash
+docker compose down
+```
+
 ### El servicio externo
 
 `fibonacci-microservice` consume `/random?bound=10` de **DemoService**, que simula un servicio de
@@ -90,12 +107,21 @@ circuit breaker: tras los primeros fallos, el circuito se abre y devuelve un val
 cd add-microservice && ./gradlew test
 cd subtract-microservice && ./gradlew test
 cd fibonacci-microservice && ./gradlew test
+cd gateway && ./gradlew test
 ```
 
 Las pruebas E2E necesitan el stack levantado:
 
 ```bash
-cd e2e && ./gradlew test
+cd e2e && ./gradlew test aggregate   # ejecuta y genera el reporte en target/site/serenity
+```
+
+Por defecto apuntan al gateway en `http://localhost:8762`; para otro destino:
+
+```bash
+cd e2e
+./gradlew test -Dbase.url=http://localhost:9000
+BASE_URL=http://localhost:8762 ./gradlew test
 ```
 
 ## Estructura
