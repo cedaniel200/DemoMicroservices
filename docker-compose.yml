@@ -1,49 +1,50 @@
-version: "3.9"
 services:
 
   eureka:
     build:
       context: ./eureka-server/
-    restart: always
+    restart: unless-stopped
     ports:
       - "8761:8761"
 
   gateway-server:
     build:
       context: ./gateway/
-    restart: always
+    restart: unless-stopped
     ports:
       - "8762:8762"
     depends_on:
       - eureka
-    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
 
   add-service:
     build:
       context: ./add-microservice/
-    restart: always
+    restart: unless-stopped
     ports:
       - "8200:8200"
     depends_on:
       - eureka
-    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
 
   subtract-service:
     build:
       context: ./subtract-microservice/
-    restart: always
+    restart: unless-stopped
     ports:
       - "8300:8300"
     depends_on:
       - eureka
-    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
 
   fibonacci-service:
     build:
       context: ./fibonacci-microservice/
-    restart: always
+    restart: unless-stopped
     ports:
       - "8400:8400"
     depends_on:
       - eureka
-    command: sh -c "dockerize -wait tcp://eureka:8761 -timeout 300s -wait-retry-interval 30s ./gradlew clean bootRun"
+    # DemoService se levanta aparte (su propio compose). host.docker.internal permite
+    # al contenedor llegar al puerto 9000 del host, tanto en macOS como en Linux.
+    environment:
+      RANDOM_NUMBER_URL: http://host.docker.internal:9000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
