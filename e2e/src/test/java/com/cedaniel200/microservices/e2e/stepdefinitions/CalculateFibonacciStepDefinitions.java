@@ -17,11 +17,13 @@ import static org.hamcrest.core.Is.is;
 public class CalculateFibonacciStepDefinitions {
 
     private static final String CESAR = "Cesar";
+    private static final String BASE_URL = System.getProperty("base.url",
+            System.getenv().getOrDefault("BASE_URL", "http://localhost:8762"));
 
     @Before
     public void prepareStage() {
         OnStage.setTheStage(new OnlineCast());
-        OnStage.theActorCalled(CESAR).whoCan(CallAnApi.at("http://localhost:8762"));
+        OnStage.theActorCalled(CESAR).whoCan(CallAnApi.at(BASE_URL));
     }
 
     @When("^Cesar calculates the fibonacci of (\\d+)$")
