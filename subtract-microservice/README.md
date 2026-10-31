@@ -1,35 +1,62 @@
 # Subtract Microservice
-_________________________
 
-Para ejecutar el proyecto usar el comando:
+![Java](https://img.shields.io/badge/Java-17-blue?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.4-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![OpenAPI](https://img.shields.io/badge/OpenAPI-springdoc%202.6.0-85EA2D?style=flat-square&logo=swagger&logoColor=black)
+![Gradle](https://img.shields.io/badge/Gradle-8.14.5-02303A?style=flat-square&logo=gradle&logoColor=white)
 
-    gradlew bootRun
+Resta una lista de números enteros, en orden. Mismo esqueleto que el servicio de suma: capas,
+registro en Eureka y contrato OpenAPI.
 
-Nota: 
-* Si **Eureka** esta corriendo de forma local asegurese de cambiar en el archivo application.yml **eureka** por **localhost**, 
-no olvide volver a dejarlo como estaba, ya que, de lo contrario no servira el **comandon docker compose up**.
-* Si **Eureka** no esta corriendo en la consola aparecera un error, pero el servicio seguira funcionando.
-______________________
+## Endpoint
 
-URL http://localhost:8300
+| Método | Ruta | Parámetros |
+|---|---|---|
+| `GET` | `/subtract/` | `numbers` (repetible) |
 
-### Paths
-* [GET] **/subtract**
+```bash
+curl "http://localhost:8300/subtract/?numbers=10&numbers=3"
+```
 
-    Parameters:
-    numbers
+```json
+{
+  "numbers": [10, 3],
+  "result": 7
+}
+```
 
-    Ejemplo:
-        
-        http://localhost:8300/subtract/?numbers=5,2
-    
-    Response
-    
-        {
-            "numbers": [
-              6,
-              3,
-              ],
-              "result": 9
-        }
-        
+## Configuración
+
+| Dato | Valor |
+|---|---|
+| Puerto | `8300` |
+| Registro | `http://eureka:8761/eureka` (`EUREKA_CLIENT_SERVICEURL_DEFAULTZONE`) |
+| Swagger UI | <http://localhost:8300/subtract/doc/> |
+| OpenAPI | `/subtract/subtract-docs` |
+
+En local, sin Docker, apunta el registro a tu Eureka:
+
+```bash
+EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://localhost:8761/eureka ./gradlew bootRun
+```
+
+## Capas
+
+```text
+com.cedaniel200.microservice.subtract
+├── domain/            # Subtractor y su implementación
+└── infrastructure/    # controlador, configuración y VO de respuesta
+```
+
+## Tests
+
+```bash
+./gradlew test
+```
+
+- `SubtractorDefaultTest`: cuatro casos del dominio.
+- `SubtractAcceptanceTest`: el controlador responde por HTTP real.
+
+---
+
+[Volver al README principal](../README.md)
