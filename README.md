@@ -141,6 +141,16 @@ DemoMicroservices
 Cada microservicio incluye su `Dockerfile` multi-etapa (compila con JDK y ejecuta con JRE como usuario
 sin privilegios) y su propio wrapper de Gradle.
 
+## Roadmap
+
+Lo que viene, en orden:
+
+- [ ] Completar la arquitectura hexagonal en los microservicios.
+- [ ] `health` y `readiness` (Actuator) y configuración por entorno en todos los servicios.
+- [ ] Despliegue en Kubernetes con probes y ConfigMaps.
+- [ ] Observabilidad: métricas y trazas.
+- [ ] Seguridad en el gateway: OAuth2 con un proveedor de identidad.
+
 ## Requisitos
 
 - Docker y Docker Compose
