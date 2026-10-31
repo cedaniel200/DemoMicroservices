@@ -1,57 +1,58 @@
 buildscript {
     repositories {
         mavenCentral()
-        mavenLocal()
-    }
-    ext{
-        serenityGradlePluginVersion = '2.4.34'
-        serenityVersion = '3.3.4'
-        serenityCucumberVersion = '3.3.4'
-
-        junitVersion = '4.13.2'
-        slf4jVersion = '2.0.1'
-        assertjVersion = '3.23.1'
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:$rootProject.ext.serenityGradlePluginVersion")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.34")
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
+plugins {
+    id 'java'
+    id 'idea'
+}
+
 apply plugin: 'net.serenity-bdd.aggregator'
 
-group 'com.example.microservices'
-version '1.0-SNAPSHOT'
+group = 'com.example.microservices'
+version = '1.0-SNAPSHOT'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
     mavenCentral()
-    mavenLocal()
+}
+
+ext {
+    serenityVersion = '5.4.1'
+
+    junitVersion = '4.13.2'
+    slf4jVersion = '2.0.1'
+    assertjVersion = '3.23.1'
 }
 
 dependencies {
 
-    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
-    implementation "net.serenity-bdd:serenity-screenplay-rest:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:$serenityVersion"
 
     testImplementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.3"
-    testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
-    testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
-    testImplementation "junit:junit:$rootProject.ext.junitVersion"
-    testImplementation "org.assertj:assertj-core:$rootProject.ext.assertjVersion"
-    testImplementation "org.slf4j:slf4j-simple:$rootProject.ext.slf4jVersion"
+    testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-junit:$serenityVersion"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
 }
 
-tasks.withType(Test) {
-    systemProperties = System.properties as Map<String, String>
-    maxParallelForks = Runtime.runtime.availableProcessors()
+tasks.withType(Test).configureEach {
+    // No copiamos System.properties: arrastra java.home del JVM de Gradle y rompe el JVM de tests.
+    maxParallelForks = 1
 }
 
 gradle.startParameter.continueOnFailure = true
